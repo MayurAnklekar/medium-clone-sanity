@@ -4,7 +4,7 @@ import { GetStaticProps } from "next";
 import { Post } from "../../typings";
 import PortableText from "react-portable-text";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
+import { Key, ReactChild, ReactFragment, ReactPortal, useState } from "react";
 
 interface IFormInput {
   _id: string;
@@ -162,7 +162,7 @@ const Post = ({ post }: Props) => {
       <div className="flex flex-col p-10 my-10 max-w-2xl mx-auto shadow-yellow-500 shadow space-y-2">
         <h3 className="text-4xl">Comments</h3>
         <hr className="pb-2"/>
-        {post.comments.map((comment) => (
+        {post.comments.map((comment: { _id: Key | null | undefined; name: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; comment: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => (
           <div key={comment._id}>
             <p><span className="text-yellow-500">{comment.name}:</span> {comment.comment}</p>
           </div>
